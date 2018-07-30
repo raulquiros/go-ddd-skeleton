@@ -1,0 +1,8 @@
+# PULL
+POST http://127.0.0.1:9000/api/pull
+
+{
+  "from": "2017-01-01T00:00:00Z",
+  "to": "2018-02-01T10:00:00Z",
+  "object": {"type": "route" }
+}
