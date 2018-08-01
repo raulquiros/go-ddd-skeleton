@@ -9,7 +9,7 @@ func Routes(router *gin.Engine) {
 
 	v1 := router.Group("/api/")
 	{
-		v1.POST("publish-post", Controllers.Post())
+		v1.POST("publish-post", Controllers.Post)
 	}
 
 }
