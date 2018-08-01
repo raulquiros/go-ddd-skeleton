@@ -1,4 +1,4 @@
-package Commands
+package Controllers
 
 import (
 	"io/ioutil"
@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"github.com/gin-gonic/gin"
 	"go-ddd-structure/Application/Service"
+	"encoding/json"
+	"fmt"
 )
 
 func Post(c *gin.Context) {
@@ -18,16 +20,22 @@ func Post(c *gin.Context) {
 		ReturnErr(c.Writer, err)
 	}
 
+	var postRequest Service.PostResquest
+
+	err = json.Unmarshal(body, &postRequest)
+	if err != nil {
+		fmt.Println("There was an error:", err)
+	}
+
 	var container DependencyContainer
 	_ = GetContainer(&container)
 
-	valid, err := Service.Post()
+	Service.Post(postRequest)
 
 	if err != nil {
 		ReturnErr(c.Writer, err)
 	}
-
-	response := Response{valid, "Ok"}
+	response := Response{true, "Ok"}
 	MakeResponse(c.Writer, response, http.StatusOK)
 }
 

@@ -1,4 +1,4 @@
-package Commands
+package Controllers
 
 import (
 	"github.com/codegangsta/inject"
