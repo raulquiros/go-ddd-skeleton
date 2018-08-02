@@ -12,7 +12,7 @@ type DependencyContainer struct {
 
 func GetInjector() inject.Injector {
 	injector := inject.New()
-	injector.Map(&Model.MongoLoggerRepository{"127.0.0.1", "versionControl", "logs"})
+	injector.Map(&Model.MongoLoggerRepository{"127.0.0.1", "blogtest", "posts"})
 	return injector
 }
 

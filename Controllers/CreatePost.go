@@ -1,16 +1,16 @@
 package Controllers
 
 import (
-	"io/ioutil"
-	"io"
-	"net/http"
-	"github.com/gin-gonic/gin"
-	"go-ddd-structure/Application/Service"
 	"encoding/json"
 	"fmt"
+	"github.com/gin-gonic/gin"
+	"go-ddd-structure/Application/Service"
+	"io"
+	"io/ioutil"
+	"net/http"
 )
 
-func Post(c *gin.Context) {
+func CreatePost(c *gin.Context) {
 
 	body, err := ioutil.ReadAll(io.LimitReader(c.Request.Body, 1048576))
 	if err != nil {
@@ -30,7 +30,7 @@ func Post(c *gin.Context) {
 	var container DependencyContainer
 	_ = GetContainer(&container)
 
-	Service.Post(postRequest)
+	Service.CreatePost(postRequest)
 
 	if err != nil {
 		ReturnErr(c.Writer, err)
@@ -38,4 +38,3 @@ func Post(c *gin.Context) {
 	response := Response{true, "Ok"}
 	MakeResponse(c.Writer, response, http.StatusOK)
 }
-
