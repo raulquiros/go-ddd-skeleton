@@ -1,7 +1,7 @@
 package Service
 
 import (
-	"github.com/satori/go.uuid"
+	"go-ddd-structure/Domain/Model"
 	"go-ddd-structure/Domain/Types"
 )
 
@@ -11,10 +11,10 @@ type PostResquest struct {
 	State   int    `json:"status"`
 }
 
-func CreatePost(request PostResquest) {
+func CreatePost(request PostResquest, generateIdService Model.GenerateIdInterface) {
 
 	var post Types.Post
-	post.ID, _ = uuid.NewV4()
+	post.ID, _ = generateIdService.Generate()
 	post.Title = request.Title
 	post.Content = request.Content
 	post.State = request.State

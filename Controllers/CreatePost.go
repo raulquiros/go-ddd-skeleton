@@ -30,7 +30,7 @@ func CreatePost(c *gin.Context) {
 	var container DependencyContainer
 	_ = GetContainer(&container)
 
-	Service.CreatePost(postRequest)
+	Service.CreatePost(postRequest, container.GenerateId)
 
 	if err != nil {
 		ReturnErr(c.Writer, err)
