@@ -1,8 +1,8 @@
-# PULL
-POST http://127.0.0.1:9000/api/pull
+# PUBLISH POST
+POST http://127.0.0.1:9000/api/publish-post
 
 {
-  "from": "2017-01-01T00:00:00Z",
-  "to": "2018-02-01T10:00:00Z",
-  "object": {"type": "route" }
+  "title": "Lorem Ipsum",
+  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at lacus ultricies, ornare metus quis, blandit nisl. Nam gravida posuere mauris, eu cursus massa semper nec. Suspendisse ut orci et quam eleifend malesuada sed sit amet sem. Donec metus velit, dignissim id arcu vel, ornare fermentum odio. Maecenas a tincidunt metus. Etiam in nulla malesuada, luctus magna ut, feugiat massa. Aliquam at leo eget velit aliquam porta. Aenean tristique odio et nulla commodo blandit. Morbi dictum magna vel condimentum mattis. Maecenas interdum volutpat ante, eu venenatis ante blandit non. Praesent elementum rutrum justo eu accumsan. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum tempor facilisis egestas. Curabitur auctor laoreet imperdiet.",
+  "state": 1
 }
