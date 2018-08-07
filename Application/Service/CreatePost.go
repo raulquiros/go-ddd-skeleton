@@ -11,7 +11,7 @@ type PostResquest struct {
 	State   int    `json:"status"`
 }
 
-func CreatePost(request PostResquest, generateIdService Model.GenerateIdInterface) {
+func CreatePost(request PostResquest, generateIdService Model.GenerateIdInterface, postRepository Model.PostRepository) (bool, error) {
 
 	var post Types.Post
 	post.ID, _ = generateIdService.Generate()
@@ -20,4 +20,7 @@ func CreatePost(request PostResquest, generateIdService Model.GenerateIdInterfac
 	post.State = request.State
 	post.State = request.State
 
+	created, err := postRepository.Create(post)
+
+	return created, err
 }
