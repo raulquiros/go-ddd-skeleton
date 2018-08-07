@@ -2,7 +2,7 @@ package Model
 
 import "go-ddd-structure/Domain/Types"
 
-type LoggerInterface interface {
+type PostRepository interface {
 	Create(post Types.Post) (bool, error)
 
 	Update(conditions Types.Post) (bool, error)

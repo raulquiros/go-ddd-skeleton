@@ -8,13 +8,14 @@ import (
 
 // Dependency Container
 type DependencyContainer struct {
-	Db         *Model.MongoLoggerRepository `inject`
-	GenerateId *Service.UuidGenerate        `inject`
+	PostRepository *Model.MongoPostRepository `inject`
+	GenerateId     *Service.UuidGenerate      `inject`
 }
 
 func GetInjector() inject.Injector {
 	injector := inject.New()
-	injector.Map(&Model.MongoLoggerRepository{"127.0.0.1", "blogtest", "posts"})
+	//TODO: Get variables by dotenv
+	injector.Map(&Model.MongoPostRepository{"127.0.0.1", "blogtest", "posts"})
 	injector.Map(&Service.UuidGenerate{})
 	return injector
 }

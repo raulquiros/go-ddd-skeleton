@@ -2,7 +2,6 @@ package Controllers
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"go-ddd-structure/Application/Service"
 	"io"
@@ -21,20 +20,19 @@ func CreatePost(c *gin.Context) {
 	}
 
 	var postRequest Service.PostResquest
-
 	err = json.Unmarshal(body, &postRequest)
 	if err != nil {
-		fmt.Println("There was an error:", err)
+		ReturnErr(c.Writer, err)
 	}
 
 	var container DependencyContainer
 	_ = GetContainer(&container)
 
-	Service.CreatePost(postRequest, container.GenerateId)
-
-	if err != nil {
+	created, err := Service.CreatePost(postRequest, container.GenerateId, container.PostRepository)
+	if err != nil && created == false {
 		ReturnErr(c.Writer, err)
 	}
-	response := Response{true, "Ok"}
+
+	response := Response{created, "Post created!"}
 	MakeResponse(c.Writer, response, http.StatusOK)
 }

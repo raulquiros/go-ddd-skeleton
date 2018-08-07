@@ -5,13 +5,13 @@ import (
 	"gopkg.in/mgo.v2"
 )
 
-type MongoLoggerRepository struct {
+type MongoPostRepository struct {
 	Host       string
 	Database   string
 	Collection string
 }
 
-func (mongoLoggerRepository MongoLoggerRepository) Create(post Types.Post) (bool, error) {
+func (mongoLoggerRepository MongoPostRepository) Create(post Types.Post) (bool, error) {
 
 	session, err := mgo.Dial(mongoLoggerRepository.Host)
 	defer session.Close()
@@ -27,13 +27,13 @@ func (mongoLoggerRepository MongoLoggerRepository) Create(post Types.Post) (bool
 	return true, nil
 }
 
-func (mongoLoggerRepository MongoLoggerRepository) Update(post Types.Post) (bool, error) {
+func (mongoLoggerRepository MongoPostRepository) Update(post Types.Post) (bool, error) {
 
 	//TODO
 	return false, nil
 }
 
-func (mongoLoggerRepository MongoLoggerRepository) Delete(post Types.Post) (bool, error) {
+func (mongoLoggerRepository MongoPostRepository) Delete(post Types.Post) (bool, error) {
 
 	//TODO
 	return false, nil
