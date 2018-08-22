@@ -2,25 +2,24 @@ package Model
 
 import (
 	"go-ddd-structure/Domain/Types"
-	"gopkg.in/mgo.v2"
 )
 
 type MongoPostRepository struct {
 	Host       string
+	Port       int
 	Database   string
 	Collection string
 }
 
 func (mongoLoggerRepository MongoPostRepository) Create(post Types.Post) (bool, error) {
 
-	session, err := mgo.Dial(mongoLoggerRepository.Host)
-	defer session.Close()
+	sessionDB, err := GetMongoSessionDatabase(mongoLoggerRepository)
 
 	if err != nil {
 		return false, err
 	}
 
-	if err := session.DB(mongoLoggerRepository.Database).C(mongoLoggerRepository.Collection).Insert(post); err != nil {
+	if err := sessionDB.C(mongoLoggerRepository.Collection).Insert(post); err != nil {
 		return false, err
 	}
 
