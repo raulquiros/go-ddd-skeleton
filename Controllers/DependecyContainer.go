@@ -15,7 +15,7 @@ type DependencyContainer struct {
 func GetInjector() inject.Injector {
 	injector := inject.New()
 	//TODO: Get variables by dotenv
-	injector.Map(&Model.MongoPostRepository{"127.0.0.1", "blogtest", "posts"})
+	injector.Map(&Model.MongoPostRepository{"127.0.0.1", 27017, "blogtest", "posts"})
 	injector.Map(&Service.UuidGenerate{})
 	return injector
 }
